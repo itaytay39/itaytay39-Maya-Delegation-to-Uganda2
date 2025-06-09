@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     
     <style>
+        /* merged style.css and original index.html styles for desired look */
         :root {
             --md-primary: #6366f1;
             --md-secondary: #8b5cf6;
@@ -50,7 +51,7 @@
             overflow-x: hidden;
         }
 
-        /* Header */
+        /* כותרת */
         .header {
             background: linear-gradient(135deg, var(--md-primary), var(--md-secondary));
             padding: 2rem 1.5rem;
@@ -82,14 +83,6 @@
             transform: scale(1.05);
         }
 
-        .logo-maya img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-        
-        /* Admin Buttons */
         .admin-fab {
             position: absolute;
             top: 15px;
@@ -114,10 +107,12 @@
             transform: scale(1.1);
         }
 
+        /* כפתור כניסה משמאל */
         #admin-login-btn {
             left: 15px;
         }
 
+        /* כפתור יציאה מימין */
         .logout-btn {
             right: 15px;
             background: rgba(255,0,0,0.3) !important;
@@ -139,7 +134,7 @@
             font-weight: 300;
         }
 
-        /* Search */
+        /* חיפוש */
         .search-container {
             padding: 1rem;
             background: var(--md-surface);
@@ -176,7 +171,7 @@
             background: transparent;
         }
 
-        /* Admin Controls */
+        /* כפתורי ניהול אדמין */
         .admin-controls {
             padding: 0 1rem;
             display: flex;
@@ -205,8 +200,8 @@
             background: #4f46e5;
             transform: translateY(-1px);
         }
-        
-        /* Map */
+
+        /* מפה */
         .map-container {
             height: 60vh;
             margin: 1rem;
@@ -233,10 +228,9 @@
             color: var(--md-text);
             backdrop-filter: blur(10px);
             box-shadow: var(--md-shadow);
-            z-index: 401;
         }
 
-        /* Floating Action Buttons */
+        /* כפתורים צפים */
         .fab {
             position: absolute;
             width: 60px;
@@ -260,18 +254,18 @@
             background: linear-gradient(135deg, var(--md-success), #059669);
         }
 
-        .reset-view-fab {
+        .reset-view-fab { /* New FAB for resetting map view */
             bottom: 1rem;
-            right: 1rem; 
-            background: linear-gradient(135deg, #42a5f5, #1976d2);
+            right: 1rem; /* Positioning for the new FAB */
+            background: linear-gradient(135deg, #42a5f5, #1976d2); /* Blue gradient */
         }
 
         .fab:hover {
             transform: scale(1.1);
             box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
         }
-        
-        /* Modals */
+
+        /* מודלים */
         .modal {
             position: fixed;
             top: 0;
@@ -305,8 +299,14 @@
         }
 
         @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .modal h3 {
@@ -316,8 +316,8 @@
             font-weight: 600;
             font-size: 1.5rem;
         }
-        
-        /* Forms */
+
+        /* טפסים */
         .form-group {
             margin-bottom: 1rem;
         }
@@ -339,7 +339,7 @@
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
 
-        /* Buttons */
+        /* כפתורים */
         .button-group {
             display: flex;
             gap: 0.75rem;
@@ -380,67 +380,243 @@
         .btn-secondary:hover {
             background: #cbd5e1;
         }
-        
-        /* Leaflet Popup Styling */
+
+        /* עיצוב בועית Popup - מותאם אישית */
         .leaflet-popup-content-wrapper {
-            padding: 0 !important;
-            border-radius: 16px !important;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+            padding: 0 !important; /* Remove default padding */
+            border-radius: 16px !important; /* More rounded corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important; /* Stronger shadow */
             background: var(--md-surface) !important;
             margin-top: 10px !important; 
         }
 
         .leaflet-popup-content {
-            margin: 0 !important;
-            min-width: 260px;
-            max-width: 300px;
+            margin: 0 !important; /* Remove default margin */
+            min-width: 260px; /* Reduced min-width */
+            max-width: 300px; /* Reduced max-width for better mobile fit */
             font-family: 'Heebo', sans-serif;
             direction: rtl;
         }
 
-        .leaflet-popup-tip-container { opacity: 0.95; }
-        .leaflet-popup-tip { background: var(--md-surface) !important; box-shadow: none !important; border-radius: 4px; }
-        
+        .leaflet-popup-tip-container { /* Container for the tip (tail) */
+            opacity: 0.95; /* Slight transparency for glassmorphism effect */
+        }
+        .leaflet-popup-tip {
+            background: var(--md-surface) !important; /* Match popup background */
+            box-shadow: none !important; /* Remove tip shadow */
+            border-radius: 4px; /* Slight rounding for the tip */
+        }
         .leaflet-popup-close-button {
-            top: 8px !important; right: 8px !important; font-size: 24px !important;
-            background: none !important; border-radius: 50%; padding: 0;
-            width: 32px; height: 32px; display: flex; align-items: center;
-            justify-content: center; transition: background-color 0.2s; z-index: 10;
+            top: 8px !important;
+            right: 8px !important;
+            font-size: 24px !important;
+            color: var(--md-text) !important; /* changed from outline for better visibility */
+            background: none !important;
+            border-radius: 50%;
+            padding: 0;
+            width: 32px; /* Increased width for touch target */
+            height: 32px; /* Increased height for touch target */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+            z-index: 10; /* Ensure it's above other elements */
         }
-        .leaflet-popup-close-button:hover { background-color: rgba(0,0,0,0.05) !important; }
-        .leaflet-popup-close-button span { display: none; }
-        .leaflet-popup-close-button::before { content: 'close'; font-family: 'Material Symbols Outlined'; font-size: 20px; line-height: 1; }
+        .leaflet-popup-close-button:hover {
+            background-color: rgba(0,0,0,0.05) !important;
+        }
+        .leaflet-popup-close-button span { /* Hide default 'x' and use Material icon if needed */
+            display: none;
+        }
+        .leaflet-popup-close-button::before {
+            content: 'close'; /* Material icon for close */
+            font-family: 'Material Symbols Outlined';
+            font-size: 20px;
+            line-height: 1;
+            color: var(--md-text); /* changed from outline for better visibility */
+        }
 
-        .popup-box { padding: 1rem; text-align: center; border: none; }
-        .popup-name { font-size: 1.3rem; font-weight: 700; color: var(--md-primary); margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
-        .popup-city { font-size: 1rem; font-weight: 500; color: var(--md-text); margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
-        .popup-phone { font-size: 0.9rem; color: #64748b; margin-bottom: 0.8rem; direction: ltr; font-weight: 500; }
-        
-        .popup-btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; justify-content: center; margin-top: 0.8rem; }
-        .popup-btn {
-            padding: 0.6rem 0.8rem; border: none; border-radius: 10px; font-size: 0.9rem;
-            font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none;
-            display: flex; align-items: center; justify-content: center; gap: 0.4rem;
-            color: white !important; font-family: 'Heebo', sans-serif; min-height: 40px; box-shadow: var(--md-shadow);
+        .popup-box {
+            background: var(--md-surface);
+            border-radius: var(--md-radius); /* Already handled by wrapper */
+            padding: 1rem; /* Reduced padding */
+            text-align: center;
+            border: none; /* Remove inner border */
         }
-        .popup-btn .material-symbols-outlined { color: white !important; font-size: 1.1rem; }
-        .popup-btn.phone { background: linear-gradient(135deg, var(--md-primary), #4f46e5); }
-        .popup-btn.whatsapp { background: linear-gradient(135deg, var(--md-success), #059669); }
-        .popup-btn.edit { background: linear-gradient(135deg, var(--md-warning), #d97706); }
-        .popup-btn.delete { background: linear-gradient(135deg, var(--md-error), #dc2626); }
-        .popup-btn:hover { transform: translateY(-2px); box-shadow: var(--md-shadow-lg); }
+
+        .popup-name {
+            font-size: 1.3rem; /* Slightly smaller font */
+            font-weight: 700;
+            color: var(--md-primary);
+            margin-bottom: 0.4rem; /* Reduced margin */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem; /* Reduced gap */
+        }
+
+        .popup-city {
+            font-size: 1rem; /* Slightly smaller font */
+            font-weight: 500;
+            color: var(--md-text);
+            margin-bottom: 0.4rem; /* Reduced margin */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem; /* Reduced gap */
+        }
+
+        .popup-phone {
+            font-size: 0.9rem; /* Slightly smaller font */
+            color: #64748b;
+            margin-bottom: 0.8rem; /* Reduced margin */
+            direction: ltr;
+            font-weight: 500;
+        }
+
+        .popup-btns {
+            display: grid; /* Changed to grid for better control over layout */
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adaptive columns */
+            gap: 0.5rem; /* Reduced gap */
+            justify-content: center; /* Center buttons */
+            margin-top: 0.8rem; /* Space from phone number */
+        }
+
+        .popup-btn {
+            padding: 0.6rem 0.8rem; /* Reduced padding */
+            border: none;
+            border-radius: 10px; /* Slightly smaller radius */
+            font-size: 0.9rem; /* Reduced font size */
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem; /* Reduced gap */
+            color: white !important;
+            font-family: 'Heebo', sans-serif;
+            min-height: 40px; /* Reduced min-height */
+            box-shadow: var(--md-shadow); /* Add subtle shadow to buttons */
+        }
+
+        .popup-btn .material-symbols-outlined {
+            color: white !important;
+            font-size: 1.1rem; /* Slightly smaller icon */
+        }
+
+        .popup-btn.phone { 
+            background: linear-gradient(135deg, var(--md-primary), #4f46e5); 
+        }
+        .popup-btn.whatsapp { 
+            background: linear-gradient(135deg, var(--md-success), #059669); 
+        }
+        .popup-btn.edit { 
+            background: linear-gradient(135deg, var(--md-warning), #d97706);
+        }
+        .popup-btn.delete { 
+            background: linear-gradient(135deg, var(--md-error), #dc2626); 
+        }
+        .popup-btn.carpool { 
+            background: linear-gradient(135deg, #374151, #1f2937); 
+        }
+
+        .popup-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--md-shadow-lg);
+        }
+
+        /* הודעות מערכת */
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .toast {
+            background: var(--md-surface);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--md-shadow-lg);
+            border-left: 4px solid var(--md-success);
+            animation: slideIn 0.3s ease;
+            min-width: 250px;
+        }
+
+        .toast.error {
+            border-left-color: var(--md-error);
+        }
+
+        .toast.warning {
+            border-left-color: var(--md-warning);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
         
-        /* Responsive */
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        /* CSS for spin animation for sync button */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* רספונסיביות */
         @media (max-width: 480px) {
-            #app-container { max-width: 100vw; }
-            .header { padding: 1.5rem 1rem; }
-            .logo-maya { width: 120px; height: 120px; }
-            .admin-fab { width: 40px; height: 40px; top: 10px; }
-            #admin-login-btn { left: 10px; }
-            .logout-btn { right: 10px; }
-            .modal-content { margin: 1rem; padding: 1.5rem; }
-            .participant-count { font-size: 0.75rem; padding: 0.25rem 0.5rem; }
-            .popup-btns { grid-template-columns: 1fr; }
+            #app-container {
+                max-width: 100vw;
+            }
+            
+            .header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .logo-maya {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .admin-fab {
+                width: 40px;
+                height: 40px;
+                top: 10px;
+            }
+            
+            #admin-login-btn {
+                left: 10px;
+            }
+            
+            .logout-btn {
+                right: 10px;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .participant-count {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            /* Responsive Popup Buttons */
+            .popup-btns {
+                grid-template-columns: 1fr; /* Single column for very small screens */
+            }
+            .popup-btn {
+                max-width: none;
+            }
         }
     </style>
 </head>
@@ -450,12 +626,14 @@
             <button id="admin-login-btn" class="admin-fab" title="כניסת אדמין">
                 <span class="material-symbols-outlined">admin_panel_settings</span>
             </button>
+            
             <button id="admin-logout-btn" class="admin-fab logout-btn" title="התנתק" style="display: none;">
                 <span class="material-symbols-outlined">logout</span>
             </button>
+            
             <div class="logo-container">
                 <div class="logo-maya">
-                    <img src="https://itaytay39.github.io/Maya-Delegation-to-Uganda1/logo.jpg" alt="מאיה משלחת לאוגנדה" onerror="this.src='https://placehold.co/140x140/FFFFFF/A0B939?text=Logo'">
+                    <img src="logo.png" alt="מאיה משלחת לאוגנדה" onerror="this.src='https://placehold.co/140x140/FFFFFF/A0B939?text=Logo'">
                 </div>
             </div>
             <div class="title">מאיה - משלחת לאוגנדה</div>
@@ -478,12 +656,15 @@
                 <span class="material-symbols-outlined">download</span>
                 יצוא ל-Excel
             </button>
+            <button id="sync-btn" class="admin-control-btn"> <span class="material-symbols-outlined">sync</span>
+                סנכרן מגיליון
+            </button>
         </div>
 
         <div class="map-container">
             <div id="map"></div>
             <div class="participant-count">
-                <span id="participant-count">0 משתתפים</span>
+                <span id="participant-count">טוען...</span>
             </div>
             <button id="add-user-btn" class="fab add-fab" style="display: none;" title="הוסף משתמש">
                 <span class="material-symbols-outlined">add</span>
@@ -493,6 +674,8 @@
             </button>
         </div>
     </div>
+
+    <input type="file" id="file-input" accept=".csv,.xlsx,.xls" style="display: none;">
 
     <div id="admin-login-modal" class="modal" hidden>
         <div class="modal-content">
@@ -512,250 +695,43 @@
             </div>
         </div>
     </div>
-    
-    <!-- User form modal would go here, but is omitted for this example -->
+
+    <div id="user-form-modal" class="modal" hidden>
+        <div class="modal-content">
+            <h3 id="user-form-title">➕ הוסף משתתף</h3>
+            <div class="form-group">
+                <input type="text" class="form-input" placeholder="שם פרטי" id="user-first-name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" placeholder="שם משפחה" id="user-last-name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" placeholder="עיר" id="user-city">
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-input" placeholder="טלפון" id="user-phone">
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-input" placeholder="וואטסאפ (לא חובה)" id="user-whatsapp">
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary" id="user-save">
+                    <span class="material-symbols-outlined">save</span>
+                    שמירה
+                </button>
+                <button class="btn btn-secondary" id="user-cancel">
+                    <span class="material-symbols-outlined">close</span>
+                    ביטול
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- DATA ---
-        // This is the updated participant list from your CSV file.
-        const participants = [
-            { id: 1, name: "איתי תעיזי", city: "תל אביב-יפו", phone: "052-5409985", lat: 32.0853, lon: 34.7818 },
-            { id: 2, name: "מאיה לוי", city: "רמת גן", phone: "054-4441234", lat: 32.0826, lon: 34.8093 },
-            { id: 3, name: "יונתן כהן", city: "גבעתיים", phone: "052-1234567", lat: 32.0731, lon: 34.8103 },
-            { id: 4, name: "נועה מזרחי", city: "רחובות", phone: "050-7654321", lat: 31.8928, lon: 34.8113 },
-            { id: 5, name: "דניאל ישראלי", city: "ירושלים", phone: "054-9876543", lat: 31.7683, lon: 35.2137 },
-            { id: 6, name: "שיר ביטון", city: "חיפה", phone: "053-4567890", lat: 32.7940, lon: 34.9896 },
-            { id: 7, name: "עמית דהן", city: "הוד השרון", phone: "052-2345678", lat: 32.15, lon: 34.8906 },
-            { id: 8, name: "רוני אברהם", city: "כפר סבא", phone: "054-8765432", lat: 32.1741, lon: 34.908 },
-            { id: 9, name: "איתמר פרידמן", city: "באר שבע", phone: "050-3456789", lat: 31.253, lon: 34.7915 },
-            { id: 10, name: "הילה כץ", city: "הרצליה", phone: "052-8765432", lat: 32.1664, lon: 34.8433 },
-            { id: 11, name: "אורן גולדשטיין", city: "קריית אונו", phone: "054-3456789", lat: 32.0599, lon: 34.8611 },
-            { id: 12, name: "יעל חדד", city: "אשדוד", phone: "053-5678901", lat: 31.8044, lon: 34.6553 },
-            { id: 13, name: "גיא ששון", city: "חולון", phone: "052-4567890", lat: 32.0169, lon: 34.7853 },
-            { id: 14, name: "לירון אזולאי", city: "כפר יונה", phone: "050-6789012", lat: 32.3204, lon: 34.9312 },
-            { id: 15, name: "תומר טל", city: "נתניה", phone: "054-7890123", lat: 32.3215, lon: 34.8532 },
-            { id: 16, name: "שני בן דוד", city: "פתח תקווה", phone: "052-8901234", lat: 32.0879, lon: 34.8872 },
-            { id: 17, name: "עומר שוורץ", city: "כוכב יאיר", phone: "050-9012345", lat: 32.2355, lon: 34.9881 },
-            { id: 18, name: "מיכל ברקוביץ'", city: "ראש העין", phone: "054-1234567", lat: 32.0954, lon: 34.9565 },
-            { id: 19, name: "נדב קליין", city: "ראשון לציון", phone: "052-2345678", lat: 31.973, lon: 34.7925 },
-            { id: 20, name: "עדי וייס", city: "רעננה", phone: "050-3456789", lat: 32.1844, lon: 34.8714 }
-        ];
-
-        // --- MAP INITIALIZATION ---
-        const map = L.map('map').setView([31.5, 34.9], 8); // Center of Israel
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        const markers = L.markerClusterGroup();
-        let participantMarkers = []; // To hold the actual marker objects for filtering
-
-        // --- GLOBAL VARIABLES ---
-        let isAdmin = false;
-        const ADMIN_PASSWORD = "2025"; // Change this to your desired password
-
-        // --- UI ELEMENTS ---
-        const searchInput = document.getElementById('search-input');
-        const participantCountEl = document.getElementById('participant-count');
-        const resetViewBtn = document.getElementById('reset-view-fab');
-
-        // Admin UI
-        const adminLoginBtn = document.getElementById('admin-login-btn');
-        const adminLogoutBtn = document.getElementById('admin-logout-btn');
-        const adminControls = document.getElementById('admin-controls');
-        const addUserBtn = document.getElementById('add-user-btn');
-        const adminLoginModal = document.getElementById('admin-login-modal');
-
-        // --- FUNCTIONS ---
-
-        /**
-         * Creates the HTML content for a participant's popup.
-         */
-        function createPopupContent(participant) {
-            // Remove dashes for the phone link
-            const telLink = participant.phone.replace(/-/g, '');
-            let adminButtons = '';
-            
-            // If the user is an admin, show edit/delete buttons
-            if (isAdmin) {
-                adminButtons = `
-                    <a href="#" class="popup-btn edit" data-id="${participant.id}"><span class="material-symbols-outlined">edit</span>עריכה</a>
-                    <a href="#" class="popup-btn delete" data-id="${participant.id}"><span class="material-symbols-outlined">delete</span>מחיקה</a>
-                `;
-            }
-
-            return `
-                <div class="popup-box">
-                    <div class="popup-name"><span class="material-symbols-outlined">person</span>${participant.name}</div>
-                    <div class="popup-city"><span class="material-symbols-outlined">location_city</span>${participant.city}</div>
-                    <div class="popup-phone">${participant.phone}</div>
-                    <div class="popup-btns">
-                        <a href="tel:${telLink}" class="popup-btn phone"><span class="material-symbols-outlined">call</span>חיוג</a>
-                        <a href="https://wa.me/972${telLink.substring(1)}" target="_blank" class="popup-btn whatsapp"><span class="material-symbols-outlined">chat</span>WhatsApp</a>
-                        ${adminButtons}
-                    </div>
-                </div>
-            `;
-        }
-
-        /**
-         * Loads and displays participants on the map.
-         */
-        function loadParticipants() {
-            markers.clearLayers();
-            participantMarkers = [];
-
-            participants.forEach(p => {
-                if (p.lat && p.lon) {
-                    const marker = L.marker([p.lat, p.lon], {
-                        // Store data in the marker for filtering
-                        name: p.name,
-                        city: p.city,
-                    });
-                    marker.bindPopup(() => createPopupContent(p));
-                    
-                    participantMarkers.push(marker);
-                    markers.addLayer(marker);
-                }
-            });
-
-            map.addLayer(markers);
-            updateParticipantCount(participants.length);
-        }
-
-        /**
-         * Updates the participant count display.
-         */
-        function updateParticipantCount(count) {
-            participantCountEl.textContent = `${count} משתתפים`;
-        }
-        
-        /**
-         * Filters markers based on search input.
-         */
-        function filterParticipants() {
-            const query = searchInput.value.toLowerCase().trim();
-            
-            markers.clearLayers(); // Clear the cluster group
-
-            const filteredMarkers = participantMarkers.filter(marker => {
-                const name = marker.options.name.toLowerCase();
-                const city = marker.options.city.toLowerCase();
-                return name.includes(query) || city.includes(query);
-            });
-            
-            filteredMarkers.forEach(marker => markers.addLayer(marker)); // Add filtered markers back
-            updateParticipantCount(filteredMarkers.length);
-        }
-
-        /**
-         * Updates the UI based on admin status.
-         */
-        function updateAdminUI() {
-            if (isAdmin) {
-                adminLoginBtn.style.display = 'none';
-                adminLogoutBtn.style.display = 'flex';
-                adminControls.style.display = 'flex';
-                addUserBtn.style.display = 'flex';
-            } else {
-                adminLoginBtn.style.display = 'flex';
-                adminLogoutBtn.style.display = 'none';
-                adminControls.style.display = 'none';
-                addUserBtn.style.display = 'none';
-            }
-            // We need to reload participants to show/hide admin buttons in popups
-            // This is only necessary if a popup is already open, but it's simpler to just reload.
-            loadParticipants(); 
-        }
-
-        /**
-         * Handles the admin login attempt.
-         */
-        function handleAdminLogin() {
-            const passwordInput = document.getElementById('admin-password');
-            if (passwordInput.value === ADMIN_PASSWORD) {
-                isAdmin = true;
-                adminLoginModal.setAttribute('hidden', '');
-                passwordInput.value = '';
-                updateAdminUI();
-            } else {
-                alert('סיסמה שגויה!');
-            }
-        }
-
-        // --- EVENT LISTENERS ---
-        searchInput.addEventListener('input', filterParticipants);
-
-        resetViewBtn.addEventListener('click', () => {
-            map.setView([31.5, 34.9], 8);
-        });
-
-        // Admin login flow
-        adminLoginBtn.addEventListener('click', () => {
-            adminLoginModal.removeAttribute('hidden');
-        });
-
-        adminLogoutBtn.addEventListener('click', () => {
-            isAdmin = false;
-            updateAdminUI();
-        });
-
-        document.getElementById('admin-cancel').addEventListener('click', () => {
-            adminLoginModal.setAttribute('hidden', '');
-        });
-
-        document.getElementById('admin-login').addEventListener('click', handleAdminLogin);
-        
-        // Allow submitting login with Enter key
-        document.getElementById('admin-password').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                handleAdminLogin();
-            }
-        });
-
-        // Placeholder for admin actions
-        addUserBtn.addEventListener('click', () => alert('תכונה להוספת משתתף תהיה זמינה בקרוב.'));
-        document.getElementById('import-btn').addEventListener('click', () => alert('תכונה לייבוא מאקסל תהיה זמינה בקרוב.'));
-        document.getElementById('export-btn').addEventListener('click', () => alert('תכונה לייצוא לאקסל תהיה זמינה בקרוב.'));
-
-        // Handle clicks inside the popup for delete/edit buttons
-        map.on('popupopen', function (e) {
-            const popupNode = e.popup.getElement();
-            if (!popupNode) return;
-
-            const deleteBtn = popupNode.querySelector('.delete');
-            const editBtn = popupNode.querySelector('.edit');
-            
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const id = event.currentTarget.dataset.id;
-                    if (confirm('האם אתה בטוח שברצונך למחוק את המשתתף?')) {
-                        alert(`בקשה למחיקת משתתף עם ID: ${id}. (תכונה בפיתוח)`);
-                        // In a real app, you would remove the participant from the array and reload.
-                    }
-                });
-            }
-
-             if (editBtn) {
-                editBtn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const id = event.currentTarget.dataset.id;
-                    alert(`בקשה לעריכת משתתף עם ID: ${id}. (תכונה בפיתוח)`);
-                });
-            }
-        });
-
-
-        // --- INITIAL LOAD ---
-        loadParticipants();
-        updateAdminUI();
-    });
-    </script>
+    <script src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
-
