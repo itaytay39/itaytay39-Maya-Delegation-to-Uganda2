@@ -25,7 +25,7 @@
         .search-input { flex: 1; border: none; outline: none; background: transparent; }
         .map-container { height: 60vh; margin: 1rem; border-radius: var(--md-radius); overflow: hidden; position: relative; }
         #map { height: 100%; width: 100%; background-color: #e2e8f0; }
-        .participant-count { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; border-radius: 20px; z-index: 401; }
+        .participant-count { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.95); padding: 0.5rem 1rem; border-radius: 20px; z-index: 401; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: opacity 0.5s ease-in-out; }
         .reset-view-fab { position: absolute; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: white; color: var(--md-primary); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .leaflet-popup-content-wrapper, .leaflet-popup-tip { 
             background: rgba(255, 255, 255, 0.95);
@@ -36,7 +36,8 @@
         }
         .popup-box { padding: 1rem; text-align: center; }
         .popup-name { font-weight: 700; font-size: 1.4rem; color: var(--md-primary); margin-bottom: 0.5rem; }
-        .popup-city { font-size: 1.1rem; margin-bottom: 0.75rem; }
+        /* --- שינוי 1: הגדלת טקסט העיר --- */
+        .popup-city { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.75rem; }
         .popup-phone { direction: ltr; font-size: 1.1rem; margin-bottom: 1.25rem; font-weight: 500; }
         .popup-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
         .popup-btn { padding: 0.75rem; border-radius: 12px; text-decoration: none; color: white !important; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: none; font-family: 'Heebo', sans-serif; font-size: 1rem; font-weight: 500; }
@@ -60,7 +61,7 @@
         </div>
         <div class="map-container">
             <div id="map"></div>
-            <div class="participant-count"><span id="participant-count">טוען...</span></div>
+            <div class="participant-count" style="opacity: 0;"><span id="participant-count"></span></div>
             <button id="reset-view-fab" class="reset-view-fab" title="מרכז מפה"><span class="material-symbols-outlined">explore</span></button>
         </div>
     </div>
@@ -99,7 +100,14 @@
 
         function renderMarkers(participantsToRender) {
             markers.clearLayers();
-            document.getElementById('participant-count').textContent = `${participantsToRender.length} משתתפים`;
+            
+            // --- שינוי 2: באנר מספר המשתתפים מופיע ונעלם ---
+            const countDiv = document.querySelector('.participant-count');
+            countDiv.style.opacity = 1;
+            countDiv.querySelector('span').textContent = `${participantsToRender.length} משתתפים`;
+            setTimeout(() => {
+                countDiv.style.opacity = 0;
+            }, 3000); // הבאנר ייעלם אחרי 3 שניות
             
             function getDistance(lat1, lon1, lat2, lon2) {
                 if (typeof lat1 !== 'number' || typeof lon1 !== 'number' || typeof lat2 !== 'number' || typeof lon2 !== 'number') return Infinity;
@@ -139,7 +147,7 @@
                     const popupContent = `
                         <div class="popup-box">
                             <div class="popup-name">${p.name}</div>
-                            <div>${p.city}</div>
+                            <div class="popup-city">${p.city}</div>
                             <div class="popup-phone">📞 0${p.phone}</div>
                             <div class="popup-btns">
                                 <a href="${telLink}" class="popup-btn phone" target="_blank">חייג</a>
