@@ -49,6 +49,7 @@
         }
 
         .header { 
+            background: #f0f2ff; /* === שינוי: הוספת צבע רקע === */
             padding: 1.5rem 1rem 1rem 1rem; 
             text-align: center; 
             border-bottom: 1px solid var(--md-surface-variant);
@@ -69,18 +70,20 @@
         .subtitle { font-size: 1rem; color: var(--md-on-surface-variant); }
 
         .search-container { 
+            background: #f0f2ff; /* === שינוי: התאמת צבע הרקע של החיפוש === */
             padding: 1rem; 
             flex-shrink: 0;
+            border-bottom: 1px solid var(--md-surface-variant);
         }
         .search-box { 
             display: flex; 
             align-items: center; 
-            background: var(--md-surface-variant);
+            background: var(--md-surface); /* שינוי לרקע לבן לניגודיות */
             border-radius: var(--md-radius-xl); 
             padding: 0.75rem 1.25rem; 
-            border: 1px solid transparent; 
+            border: 1px solid var(--md-outline); 
         }
-        .search-box:focus-within { background: var(--md-surface); border-color: var(--md-secondary); }
+        .search-box:focus-within { border-color: var(--md-primary); }
         .search-icon { margin-left: 0.75rem; color: var(--md-on-surface-variant); }
         .search-input { flex: 1; border: none; outline: none; background: transparent; font-size: 1rem; }
 
@@ -137,7 +140,7 @@
         .popup-box { text-align: right; }
         .popup-header {
             padding: 1.5rem;
-            padding-top: 2.5rem; /* הוספת ריווח נוסף למעלה */
+            padding-top: 2.5rem;
             padding-left: 48px; 
         }
         .popup-name { 
@@ -214,7 +217,7 @@
     <script>
         const SHEETDB_API_URL = 'https://sheetdb.io/api/v1/sbhyvkuopsbjk';
         const GOOGLE_MAPS_API_KEY = 'AIzaSyCEo0QBID_qOEivVCmbcg8Z_YYY4cIjwj0';
-        const AUTO_REFRESH_INTERVAL = 600000; // 10 דקות
+        const AUTO_REFRESH_INTERVAL = 600000;
 
         let allParticipants = [];
         const map = L.map('map', {
@@ -232,7 +235,6 @@
         const markers = L.markerClusterGroup();
         map.addLayer(markers);
         
-        // === שינוי: החזרת הסמן הישן ===
         const modernMarkerIcon = L.divIcon({ 
             className: 'modern-marker', 
             html: `<div style="width:30px;height:30px;background:#6366f1;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 4px 10px rgba(0,0,0,0.3);"></div>`, 
